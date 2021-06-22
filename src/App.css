@@ -1,38 +1,145 @@
 .App {
-  text-align: center;
+    min-height: 100vh;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(rgb(47,150,163), rgb(48, 62, 143));
+    font-family: sans-serif;
+    color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.location {
+  height: 30vh;
+  margin-top: 5vh;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.temperature {
+  flex-direction: column;
+  width: 50%;
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.degree-section {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.degree-section span {
+  margin: 10px;
+  font-size: 30px;
+}
+
+.degree-section h2 {
+  font-size: 40px;
+}
+
+.degree-container {
+  display: flex;
+  width: 300px;
+  justify-content: center;
+  margin-top: 15px;
+  font-size: 30px;
+}
+
+.wi {
+  margin-right: 30px;
+}
+
+.input {
+  width: 600px;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.temp-today,
+.temp-tomorrow {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  /* outline: 1px solid red; */
+}
+
+.temp__card {
+  width: 15%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  /* outline: 1px solid yellow; */
+}
+
+.temp__card:last-child {
+  margin-right: 0px;
+}
+
+.place {
+  text-transform: capitalize;
+  margin-top: 15px;
+}
+
+.current-day,
+.tomorrow {
+  margin-top: 15px;
+}
+
+.input_text {
+width: 200px;
+height: 30px;
+
+padding-left: 10px;
+padding-right: 10px;
+
+font-size: 14px;
+box-sizing: border-box;
+border-radius: 5px 5px;
+margin-right: 10px;
+border: none;
+}
+
+.submit {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer; 
+
+  display: block;
+  width: 100px;
+  height: 30px;
+  border-radius: 5px 5px;
+
+  color: white;
+  background-color: blue;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
+  line-height: 30px;
+}
+
+.chart_wrapper {
+  width: 500px;
+  height: 250px;
+  margin-right: 50px;
+  margin-top: 25px;
+}
+
+.main_wrapper {
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  margin-bottom: 50px;
+  margin-top: 50px;
 }
