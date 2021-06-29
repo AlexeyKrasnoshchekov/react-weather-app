@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App {
     min-height: 100vh;
     display: flex;
@@ -55,15 +61,14 @@
   margin-right: 30px;
 }
 
-.input {
+.form {
   width: 600px;
   margin-top: 40px;
   display: flex;
   justify-content: center;
 }
 
-.temp-today,
-.temp-tomorrow {
+.temperature-time {
   display: flex;
   justify-content: center;
   width: 80%;
@@ -72,14 +77,14 @@
   /* outline: 1px solid red; */
 }
 
-.temp__card {
+.temperature_container {
   width: 15%;
   margin-right: 10px;
   margin-bottom: 10px;
   /* outline: 1px solid yellow; */
 }
 
-.temp__card:last-child {
+.temperature_container:last-child {
   margin-right: 0px;
 }
 
@@ -135,10 +140,10 @@ border: none;
   margin-top: 25px;
 }
 
-.main_wrapper {
+.weather-container {
   width: 70%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 50px;
   margin-top: 50px;
