@@ -73,7 +73,7 @@ function App() {
     console.log("city", city);
     setWeatherTimes(dataList);
     console.log("weatherTimes", weatherTimes);
-
+    // 111
     getWeatherChart();
   };
 
