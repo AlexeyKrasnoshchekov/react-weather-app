@@ -6,11 +6,7 @@ import Weather from "./Weather.js";
 import WeatherIcons from "./WeatherIcons.js";
 import LineChart from "./WeatherChart.js";
 
-
-
 function App() {
-
-
   let long;
   let lat;
 
@@ -37,12 +33,6 @@ function App() {
   const [xlabels, setXlabels] = useState([]);
   const [ytemps, setYtemps] = useState([]);
 
-  // const [weatherDegree, setWeatherDegree] = useState("");
-  // const [weatherFeels, setWeatherFeels] = useState("");
-  // const [weatherIcon, setWeatherIcon] = useState("");
-  // const [weatherDescription, setWeatherDescription] = useState("");
-  const [query, setQuery] = useState("London");
-
   const getWeatherGeo = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log("position", position);
@@ -57,64 +47,68 @@ function App() {
     async function getFetchGeo(api) {
       let data = await fetch(api);
       let dataJSON = await data.json();
-      console.log("dataJSON", dataJSON);
+      // console.log("dataJSON", dataJSON);
 
       setName(dataJSON.name);
-      setTemperature( Math.floor( (dataJSON.main.temp - 32)*(5/9) ) );
+      setTemperature(Math.floor((dataJSON.main.temp - 32) * (5 / 9)));
       setDescription(dataJSON.weather[0].description);
 
       let code = dataJSON.weather[0].id;
 
       if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-        setIcon('day-' + WeatherIcons[code].icon);
+        setIcon("day-" + WeatherIcons[code].icon);
       }
-
     }
   };
 
   const getWeatherClick = async () => {
     let api = `${proxy}api.openweathermap.org/data/2.5/forecast?q=${search}&cnt=8&units=metric&appid=${APP_ID2}`;
+
     let data = await fetch(api);
     let dataJSON = await data.json();
     console.log("dataOnClick", dataJSON);
+    let dataList = dataJSON.list;
     setCity(dataJSON.city.name);
-    setWeatherTimes(dataJSON.list);
-    weatherTimes.map((weatherTime) => {
-      
+    console.log("dataList", dataList);
+    console.log("city", city);
+    setWeatherTimes(dataList);
+    console.log("weatherTimes", weatherTimes);
+
+    getWeatherChart();
+  };
+
+  const getWeatherChart = async () => {
+    console.log("weatherTimes111", weatherTimes);
+
+    await weatherTimes.map((weatherTime) => {
       let time = new Date(weatherTime.dt * 1000).getHours();
       let temp = Math.floor(weatherTime.main.temp);
 
       xlabelsArr.push(time);
       ytempsArr.push(temp);
-      
     });
 
-
+    console.log("xlabelsArr", xlabelsArr);
     setXlabels(xlabelsArr);
+    console.log("ytempsArr", ytempsArr);
     setYtemps(ytempsArr);
-  }
+  };
 
   const updateSearch = (e) => {
     setSearch(e.target.value);
-    console.log("search", search);
+    // console.log("search", search);
   };
 
   const getSearch = (e) => {
     e.preventDefault();
-    setQuery(search);
+    // setQuery(search);
+    getWeatherClick();
     setSearch("");
   };
 
   useEffect(() => {
-    console.log('555');
     getWeatherGeo();
   }, [name]);
-
-  useEffect(() => {
-    console.log('777');
-    getWeatherClick();
-  }, [query]);
-
 
   return (
     <div className="App">
@@ -127,7 +121,7 @@ function App() {
       />
       <Form search={search} updateSearch={updateSearch} getSearch={getSearch} />
       <h2 className="place">{city}</h2>
-      <LineChart xlabels={xlabels} ytemps={ytemps}/>
+      <LineChart xlabels={xlabels} ytemps={ytemps} />
       <h3 className="place">Weather by hours</h3>
       <div className="weather-container">
         {weatherTimes.map((weatherTime) => (

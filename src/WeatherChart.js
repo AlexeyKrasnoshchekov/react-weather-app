@@ -2,6 +2,8 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 
 const LineChart = ({ xlabels, ytemps }) => {
+  // console.log('777', xlabels);
+  // console.log('888', ytemps);
   const data = {
     labels: xlabels,
     datasets: [
